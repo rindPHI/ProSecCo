@@ -63,7 +63,64 @@ class SignupController extends Zend_Controller_Action
 
     public function createKeysAction()
     {
-        // action body
+        
+        if (($username = Prosecco_Authentication::getInstance()->loggedInAs()) != false)
+        {
+            $this->view->userName = $username;
+            
+            // Get UID
+            $userMapper = new Application_Model_UserMapper();
+            $userdata = $userMapper->findByColumn("uname", $username);            
+            $uid = $userdata[0]->getUid();
+            
+            // Get real name
+            $userdata = new Application_Model_UserData();
+            $userDataMapper = new Application_Model_UserDataMapper();
+            $userDataMapper->find($uid, $userdata);
+            
+            if ($userdata !== null)
+            {                
+                $this->view->realName =
+                    $this->buildRealName($userdata->getForename(), $userdata->getSurname());
+            }
+            else
+            {
+                $this->view->realName = null;
+            }
+        }
+        else
+        {
+            //TODO require authentication
+        }
+        
+    }
+    
+    /**
+     * @param string $forename
+     * @param string $surname
+     * @return string A combination of forename and surname or only one of both
+     *                parameters if any of them is null 
+     */
+    private function buildRealName($forename, $surname)
+    {
+        $separator = ' ';
+        
+        if ($forename === null)
+        {
+            $forename = '';
+        }
+        
+        if ($surname === null)
+        {
+            $surname = '';
+        }
+        
+        if ($forename == '' || $surname == '')
+        {
+            $separator = '';
+        }
+        
+        return $forename . $separator . $surname;
     }
 
 

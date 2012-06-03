@@ -1,16 +1,24 @@
-<!--[if !IE]>-->
-<object classid="java:Sample2.class" 
+ <!--[if !IE]>-->
+<object classid="java:de.dominicscheurer.secmail.applet.InstallationApplet.class" 
         type="application/x-java-applet"
-        archive="Sample2.jar" 
-        height="300" width="550" >
-<!-- Konqueror browser needs the following param -->
-<param name="archive" value="Sample2.jar" />
+        archive="/applets/prosecco-initializer.jar?v=20-13,/applets/bcpg-jdk15on-147.jar,/applets/bcprov-jdk15on-147.jar,/applets/commons-logging-1.1.1.jar,/applets/httpclient-4.2.jar,/applets/httpcore-4.2.jar" 
+        height="500" width="750" >
+ Konqueror browser needs the following param 
+<param name="archive" value="/applets/prosecco-initializer.jar,/applets/bcpg-jdk15on-147.jar,/applets/bcprov-jdk15on-147.jar,/applets/commons-logging-1.1.1.jar,/applets/httpclient-4.2.jar,/applets/httpcore-4.2.jar" />
+<param name="nickName" value="<?php echo $this->userName; ?>"/>
+<?php if (isset($this->realName)) { ?>
+<param name="realName" value="<?php echo $this->realName; ?>"/>
+<?php } /* end if isset($this->realName) */ ?>
 <!--<![endif]-->
 <object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" 
         height="300" width="550" > 
-    <param name="code" value="Sample2" />
-    <param name="archive" value="Sample2.jar" />
+    <param name="code" value="de.dominicscheurer.secmail.applet.InstallationApplet" />
+    <param name="archive" value="/applets/prosecco-initializer.jar,/applets/bcpg-jdk15on-147.jar,/applets/bcprov-jdk15on-147.jar,/applets/commons-logging-1.1.1.jar,/applets/httpclient-4.2.jar,/applets/httpcore-4.2.jar" />
+    <param name="nickName" value="<?php echo $this->userName; ?>"/>
+    <?php if (isset($this->realName)) { ?>
+    <param name="realName" value="<?php echo $this->realName; ?>"/>
+    <?php } /* end if isset($this->realName) */ ?>
 </object> 
-<!--[if !IE]>-->
+ <!--[if !IE]>-->
 </object>
 <!--<![endif]-->

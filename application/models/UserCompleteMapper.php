@@ -73,6 +73,53 @@ class Application_Model_UserCompleteMapper
         $userDataMapper->save($userData);
     }
     
+    /**
+     * @param string $column
+     * @param mixed $value
+     * @param array $userdata Array of {@link Application_Model_UserData}: The Results
+     */
+//    public function findByColumn($column, $value, $userdata)
+//    {
+//        //TODO: Hard-Coded column arrays are way to "static"!
+//        $userColumns = array(
+//            'uid',
+//            'uname',
+//            'publicKey',
+//            'password',
+//        );
+//        
+//        $userDataColumns = array(
+//            'uid',
+//            'forename',
+//            'surname',
+//            'organization',
+//            'email',
+//            'streetnr',
+//            'zip',
+//            'city',
+//            'ccode' ,
+//        );
+//        
+//        $userMapper = new Application_Model_UserMapper();
+//        $userDataMapper = new Application_Model_UserDataMapper();
+//        
+//        if (in_array($column, $userColumns))
+//        {
+//            $userResult = array();
+//            $userResult = $userMapper->findByColumn($column, $value, $userResult);
+//            
+//            /*TODO*/
+//        }
+//        elseif (in_array($column, $userDataColumns))
+//        {
+//            
+//        }
+//        else
+//        {
+//            throw new BadMethodCallException();
+//        }
+//    }
+    
     public function fetchAll()
     {
         $resultSetUser = $this->_userMapper->fetchAll();

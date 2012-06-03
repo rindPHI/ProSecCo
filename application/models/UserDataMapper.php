@@ -92,6 +92,35 @@ class Application_Model_UserDataMapper
             ->setCcode($row->ccode);
     }
     
+    /**
+     * @param string $column
+     * @param mixed $value
+     * @param array $userdata Array of {@link Application_Model_UserData}: The Results
+     */
+    public function findByColumn($column, $value, $userdata)
+    {
+        /**
+         * @var Zend_Db_Table_Rowset_Abstract 
+         */
+        $dbResult = $this->getDbTable()->fetchAll(array($column => $value));
+        
+        foreach ($dbResult as $row)
+        {
+            $user = new Application_Model_UserData();
+            $user->setUid($row->uid)
+                ->setForename($row->forename)
+                ->setSurname($row->surname)
+                ->setOrganization($row->organization)
+                ->setEmail($row->email)
+                ->setStreetnr($row->streetnr)
+                ->setZip($row->zip)
+                ->setCity($row->city)
+                ->setCcode($row->ccode);
+            
+            $userdata[] = $user;
+        }
+    }
+    
     public function fetchAll()
     {
         $resultSet = $this->getDbTable()->fetchAll();

@@ -65,9 +65,10 @@ class Prosecco_Authentication
             ->setIdentity($uname)
             ->setCredential($password);
         
-        return Zend_Auth::getInstance()->authenticate(self::$_authAdapter)->isValid();
+//        $zendAuthInstance = Zend_Auth::getInstance();
+//        $zendAuthInstance->setStorage(new Zend_Auth_Storage_Session('prosecco'));
         
-//        return self::$_authAdapter->authenticate()->isValid();
+        return Zend_Auth::getInstance()->authenticate(self::$_authAdapter)->isValid();
     }
     
     /**

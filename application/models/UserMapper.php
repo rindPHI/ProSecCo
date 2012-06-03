@@ -66,6 +66,39 @@ class Application_Model_UserMapper
              ->setPassword($row->password);
     }
     
+    /**
+     * @param string $column
+     * @param mixed $value
+     * @return array An array of {@link Application_Model_User}: The query results
+     */
+    public function findByColumn($column, $value)
+    {
+        /**
+         * @var Zend_Db_Table_Select 
+         */
+        $select = $this->getDbTable()
+                ->select()
+                ->where($column . ' = ?', $value);
+        
+        /**
+         * @var Zend_Db_Table_Rowset_Abstract 
+         */
+        $dbResult = $this->getDbTable()->fetchAll($select);
+        
+        foreach ($dbResult as $row)
+        {
+            $user = new Application_Model_User();
+            $user->setUid($row->uid)
+                ->setUname($row->uname)
+                ->setPublicKey($row->publicKey)
+                ->setPassword($row->password);
+            
+            $userdata[] = $user;
+        }
+        
+        return $userdata;
+    }
+    
     public function fetchAll()
     {
         $resultSet = $this->getDbTable()->fetchAll();
